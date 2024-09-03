@@ -3,14 +3,13 @@ In this step-by-step guide, you will install the necessary Security tools and se
 ## Install Sysmon
 Within your Windows machine, navigate to the following page to download and install Sysmon:
 
-https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon
+- https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon
 
 Additionally, we will need the following Sysmon config file:
 
-https://github.com/olafhartong/sysmon-modular/blob/master/sysmonconfig.xml
+- https://github.com/olafhartong/sysmon-modular/blob/master/sysmonconfig.xml
 
 Extract Sysmon.zip and move the config file within this folder. 
-
 Open up PowerShell with administrator privileges and run the following command
 
 ```.\Sysmon64.exe -i sysmonconfig.xml```
@@ -76,12 +75,10 @@ Install ElasticSearch by running the following commands:
 
 ```sudo apt install elasticsearch```
 #### Optional 
-Create a jvm.options file under /etc/elasticsearch/jvm.options.d and put the following configurations in that file.
+Create a jvm.options file under /etc/elasticsearch/jvm.options.d and put the following configurations in that file:
 
 -Dlog4j2.formatMsgNoLookups=true
-
 -Xms2g
-
 -Xmx2g
 ### Install TheHive
 ---
@@ -97,4 +94,4 @@ Finally, we can install TheHive
 
 Default Credentials on port 9000
 
-Admin Credentials: 'admin@thehive.local:secret'
+Admin Credentials: admin@thehive.local:secret
