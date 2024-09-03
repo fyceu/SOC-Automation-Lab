@@ -30,10 +30,11 @@ In another Ubuntu VM, update and upgrade your system.
 
 TheHive requires multiple dependencies and services in order to run properly.
 
-Install the required dependencies
+Install the required dependencies:
+
 ```apt install wget gnupg apt-transport-https git ca-certificates ca-certificates-java curl  software-properties-common python3-pip lsb-release```
 
-### Install Java
+### Installing Java
 Install Java by running the following commands
 ```wget -qO- https://apt.corretto.aws/corretto.key | sudo gpg --dearmor  -o /usr/share/keyrings/corretto.gpg```
 
@@ -47,6 +48,30 @@ Install Java by running the following commands
 
 ```export JAVA_HOME="/usr/lib/jvm/java-11-amazon-corretto"```
 
-### Install Cassandra
+### Installing Cassandra
+wget -qO -  https://downloads.apache.org/cassandra/KEYS | sudo gpg --dearmor  -o /usr/share/keyrings/cassandra-archive.gpg
+echo "deb [signed-by=/usr/share/keyrings/cassandra-archive.gpg] https://debian.cassandra.apache.org 40x main" |  sudo tee -a /etc/apt/sources.list.d/cassandra.sources.list
+sudo apt update
+sudo apt install cassandra
 
-### Install ElasticSearch
+### Installing ElasticSearch
+wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch |  sudo gpg --dearmor -o /usr/share/keyrings/elasticsearch-keyring.gpg
+sudo apt-get install apt-transport-https
+echo "deb [signed-by=/usr/share/keyrings/elasticsearch-keyring.gpg] https://artifacts.elastic.co/packages/7.x/apt stable main" |  sudo tee /etc/apt/sources.list.d/elastic-7.x.list
+sudo apt update
+sudo apt install elasticsearch
+
+#### Optional 
+Create a jvm.options file under /etc/elasticsearch/jvm.options.d and put the following configurations in that file.
+-Dlog4j2.formatMsgNoLookups=true
+-Xms2g
+-Xmx2g
+
+Install TheHive
+wget -O- https://archives.strangebee.com/keys/strangebee.gpg | sudo gpg --dearmor -o /usr/share/keyrings/strangebee-archive-keyring.gpg
+echo 'deb [signed-by=/usr/share/keyrings/strangebee-archive-keyring.gpg] https://deb.strangebee.com thehive-5.2 main' | sudo tee -a /etc/apt/sources.list.d/strangebee.list
+sudo apt-get update
+sudo apt-get install -y thehive
+
+Default Credentials on port 9000
+credentials are 'admin@thehive.local' with a password of 'secret'
