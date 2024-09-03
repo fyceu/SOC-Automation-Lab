@@ -22,7 +22,7 @@ Once your system is up to date, you can install Wazuh using the following comman
 
 ```curl -sO https://packages.wazuh.com/4.7/wazuh-install.sh && sudo bash ./wazuh-install.sh -a```
 
-**NOTE**: Copy the Wazuh admin login credentials
+**NOTE**: Add the Wazuh admin login credentials somewhere secure. These credentials will be used to access the Wazuh dashboard
 ## Installing TheHive
 In another Ubuntu VM, update and upgrade your system.
 
@@ -36,6 +36,7 @@ Install the required dependencies:
 
 ### Installing Java
 Install Java by running the following commands
+
 ```wget -qO- https://apt.corretto.aws/corretto.key | sudo gpg --dearmor  -o /usr/share/keyrings/corretto.gpg```
 
 ```echo "deb [signed-by=/usr/share/keyrings/corretto.gpg] https://apt.corretto.aws stable main" |  sudo tee -a /etc/apt/sources.list.d/corretto.sources.list```
@@ -49,29 +50,43 @@ Install Java by running the following commands
 ```export JAVA_HOME="/usr/lib/jvm/java-11-amazon-corretto"```
 
 ### Installing Cassandra
-wget -qO -  https://downloads.apache.org/cassandra/KEYS | sudo gpg --dearmor  -o /usr/share/keyrings/cassandra-archive.gpg
-echo "deb [signed-by=/usr/share/keyrings/cassandra-archive.gpg] https://debian.cassandra.apache.org 40x main" |  sudo tee -a /etc/apt/sources.list.d/cassandra.sources.list
-sudo apt update
-sudo apt install cassandra
+Install Cassandra by running the following commands:
 
+```wget -qO -  https://downloads.apache.org/cassandra/KEYS | sudo gpg --dearmor  -o /usr/share/keyrings/cassandra-archive.gpg```
+
+```echo "deb [signed-by=/usr/share/keyrings/cassandra-archive.gpg] https://debian.cassandra.apache.org 40x main" |  sudo tee -a /etc/apt/sources.list.d/cassandra.sources.list```
+
+```sudo apt update```
+
+```sudo apt install cassandra```
 ### Installing ElasticSearch
-wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch |  sudo gpg --dearmor -o /usr/share/keyrings/elasticsearch-keyring.gpg
-sudo apt-get install apt-transport-https
-echo "deb [signed-by=/usr/share/keyrings/elasticsearch-keyring.gpg] https://artifacts.elastic.co/packages/7.x/apt stable main" |  sudo tee /etc/apt/sources.list.d/elastic-7.x.list
-sudo apt update
-sudo apt install elasticsearch
+Install ElasticSearch by running the following commands:
+
+```wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch |  sudo gpg --dearmor -o /usr/share/keyrings/elasticsearch-keyring.gpg```
+
+```sudo apt-get install apt-transport-https```
+
+```echo "deb [signed-by=/usr/share/keyrings/elasticsearch-keyring.gpg] https://artifacts.elastic.co/packages/7.x/apt stable main" |  sudo tee /etc/apt/sources.list.d/elastic-7.x.list```
+
+```sudo apt update```
+
+```sudo apt install elasticsearch```
 
 #### Optional 
 Create a jvm.options file under /etc/elasticsearch/jvm.options.d and put the following configurations in that file.
 -Dlog4j2.formatMsgNoLookups=true
 -Xms2g
 -Xmx2g
+### Install TheHive
+Finally, we can install TheHive
 
-Install TheHive
-wget -O- https://archives.strangebee.com/keys/strangebee.gpg | sudo gpg --dearmor -o /usr/share/keyrings/strangebee-archive-keyring.gpg
-echo 'deb [signed-by=/usr/share/keyrings/strangebee-archive-keyring.gpg] https://deb.strangebee.com thehive-5.2 main' | sudo tee -a /etc/apt/sources.list.d/strangebee.list
-sudo apt-get update
-sudo apt-get install -y thehive
+```wget -O- https://archives.strangebee.com/keys/strangebee.gpg | sudo gpg --dearmor -o /usr/share/keyrings/strangebee-archive-keyring.gpg```
+
+```echo 'deb [signed-by=/usr/share/keyrings/strangebee-archive-keyring.gpg] https://deb.strangebee.com thehive-5.2 main' | sudo tee -a /etc/apt/sources.list.d/strangebee.list```
+
+```sudo apt-get update```
+
+```sudo apt-get install -y thehive```
 
 Default Credentials on port 9000
 credentials are 'admin@thehive.local' with a password of 'secret'
