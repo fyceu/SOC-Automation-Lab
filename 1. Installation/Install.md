@@ -78,7 +78,9 @@ Install ElasticSearch by running the following commands:
 Create a jvm.options file under /etc/elasticsearch/jvm.options.d and put the following configurations in that file:
 
 -Dlog4j2.formatMsgNoLookups=true
+
 -Xms2g
+
 -Xmx2g
 ### Install TheHive
 ---
