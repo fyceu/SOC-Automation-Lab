@@ -1,4 +1,4 @@
-Before we can begin this lab, we will need to tweak a few configuration settings of our services.
+In this section, we will tweak a few configuration settings of the services we installed in the previous step. These changes will allow us to host our TheHive instance on our Ubuntu server, allowing us to access the TheHive dashboard from our local machine.
 ## Cassandra
 
 Change configuration file of cassandra

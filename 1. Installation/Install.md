@@ -1,5 +1,4 @@
-## Guide
-In this step-by-step guide, you will install the necessary Security tools and services on Windows 10 Pro workstation and Ubuntu Desktop 22.04 
+In this step-by-step guide, we will install the necessary Security tools and services on Windows 10 Pro workstation and Ubuntu Desktop 22.04 
 ## Install Sysmon
 Within your Windows machine, navigate to the following page to download and install Sysmon:
 
@@ -10,7 +9,9 @@ Additionally, we will need the following Sysmon config file:
 - https://github.com/olafhartong/sysmon-modular/blob/master/sysmonconfig.xml
 
 Extract Sysmon.zip and move the config file within this folder. 
-Open up PowerShell with administrator privileges and run the following command
+Open up PowerShell with administrator privileges and change to this directory. 
+
+Install Sysmon by running the following command:
 
 ```.\Sysmon64.exe -i sysmonconfig.xml```
 
