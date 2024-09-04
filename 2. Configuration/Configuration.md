@@ -1,4 +1,4 @@
-Before we can begin this lab, we will need to tweak a few configuration settings for our applications.
+Before we can begin this lab, we will need to tweak a few configuration settings of our services.
 ## Cassandra
 
 Change configuration file of cassandra
@@ -32,7 +32,7 @@ located at: ```/etc/thehive/application.conf```
 - change application.baseUrl to public IP of Ubuntu server (port 9000)
 
 ## Running services
-Run the following commands to start TheHive
+Run the following commands consecutively to start TheHive
 
 ```systemctl start cassandra```
 
@@ -54,3 +54,5 @@ You can check the status of each service using the following commands:
 - ```systemctl status cassandra```
 - ```systemctl status elasticsearch```
 - ```systemctl status thehive```
+
+If you are still having issues, try completing the [OPTIONAL](https://github.com/fyceu/SOC-Automation-Lab/blob/wip/1.%20Installation/Install.md#optional) section from the previous step. 
