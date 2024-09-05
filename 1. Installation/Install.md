@@ -16,6 +16,9 @@ Install Sysmon by running the following command:
 ```.\Sysmon64.exe -i sysmonconfig.xml```
 
 Sysmon should now be installed on the system. Verify that Sysmon has successfully installed  by locating it within the Services application.
+
+![SysmonInstalled](https://github.com/user-attachments/assets/20c86860-22f0-42a1-97f7-49bfbaeffa4b)
+
 ## Installing Wazuh
 If this is the first time logging into your Ubuntu VM, ensure you update the system
 

@@ -114,7 +114,7 @@ Search for sysmon and locate ```0800-sysmon_id_1.xml```
 - These are default sysmon rules for eventID 1 created by Wazuh that we can edit for our scenario
 - Open and copy the format of a single rule entry
 
-Click Custom Rule and  open```local_rules.xml``` 
+Exit that file, click Custom Rule, and open```local_rules.xml``` 
 - paste the copied rule into here and edit it to match the following
 
 ```xml
@@ -131,12 +131,14 @@ Click Custom Rule and  open```local_rules.xml```
 - level = severity, so let's just set it to the max of 15
 - fieldname = original file name (field from log in previous screenshot)
 	- Allows detection of Mimikatz even if the file name was changed (ex: svchost.exe)
+	- type="pcre2">(?i) is REGEX to match mimikatz.exe
 - remove ```<options>``` tag as we want ALL of the logs
 - ID = MITRE ID
 	- T1003: https://attack.mitre.org/techniques/T1003
 	- Mimikatz: https://attack.mitre.org/software/S0002/
 
 Ensure indentation matches the rule above. Save the rule, and restart the Wazuh-Manager
+- Either restart underneath the save icon or restart on the Ubuntu server
 
 Once restarted, run Mimikatz once again to test the new alert.
 
@@ -146,3 +148,17 @@ Once restarted, run Mimikatz once again to test the new alert.
 ![Mimikatz detected](https://github.com/user-attachments/assets/13abc28a-36ae-4151-b8cc-f0f16798425c)
 
 ## Troubleshooting
+
+**Unable to find Sysmon or PowerShell logs in Windows Event Viewer after running Mimikatz.exe**
+- Check your ```C:\Program Files (x86)\ossec-agent\ossec.conf``` is written and formatted correctly
+
+**Unable to view archive logs in Wazuh**
+- First check to see if archives are logging properly
+	- ```cat /var/ossec/logs/archives/archives.json | grep -i mimikatz```
+	- If entry shows up blank:
+		- Check  ``````/var/ossec/etc/ossec.conf`````` file is written and formatted correctly
+		- Check ``````/etc/filebeat/filebeat.yml`````` file is edited properly
+		- restart both Wazuh and FileBeat services on Ubuntu server
+			- ```systemctl restart Filebeat.service```
+			- ```systemctl restart Wazuh-Manager.service```
+	- If you are able to see mimikatz within archives.json, you might need to wait for the logs to reach the SIEM. 
