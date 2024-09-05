@@ -141,6 +141,8 @@ Ensure indentation matches the rule above. Save the rule, and restart the Wazuh-
 Once restarted, run Mimikatz once again to test the new alert.
 
 ![MimikatzDetected](https://github.com/user-attachments/assets/5a48ea10-c812-42cb-b8c5-abd6e842885f)
+
+
 ![Mimikatz detected](https://github.com/user-attachments/assets/13abc28a-36ae-4151-b8cc-f0f16798425c)
 
 ## Troubleshooting
