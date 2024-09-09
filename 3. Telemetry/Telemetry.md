@@ -146,7 +146,7 @@ Once restarted, run Mimikatz once again to test the new alert.
 
 
 ![Mimikatz detected](https://github.com/user-attachments/assets/13abc28a-36ae-4151-b8cc-f0f16798425c)
-
+<br>
 ## Troubleshooting
 
 **Unable to find Sysmon or PowerShell logs in Windows Event Viewer after running Mimikatz.exe**
@@ -155,10 +155,10 @@ Once restarted, run Mimikatz once again to test the new alert.
 **Unable to view archive logs in Wazuh**
 - First check to see if archives are logging properly
 	- ```cat /var/ossec/logs/archives/archives.json | grep -i mimikatz```
-	- If entry shows up blank:
-		- Check  ``````/var/ossec/etc/ossec.conf`````` file is written and formatted correctly
-		- Check ``````/etc/filebeat/filebeat.yml`````` file is edited properly
-		- restart both Wazuh and FileBeat services on Ubuntu server
-			- ```systemctl restart Filebeat.service```
-			- ```systemctl restart Wazuh-Manager.service```
+		- If entry shows up blank:
+			- Check  ``````/var/ossec/etc/ossec.conf`````` file is written and formatted correctly
+			- Check ``````/etc/filebeat/filebeat.yml`````` file is edited properly
+			- restart both Wazuh and FileBeat services on Ubuntu server
+				- ```systemctl restart Filebeat.service```
+				- ```systemctl restart Wazuh-Manager.service```
 	- If you are able to see mimikatz within archives.json, you might need to wait for the logs to reach the SIEM. 
